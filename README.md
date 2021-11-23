@@ -1,97 +1,107 @@
-# dotfiles-plugin-template
+# dotfiles-plugin-base
 
 ## Getting started
 
-This repository is used like a template by [dotfiles project](https://github.com/autentia/dotfiles). If you want to use this repository to extend your ```dotfiles``` configuration you have two options:
+This repository is a plugin to be used with [dotfiles project](https://github.com/autentia/dotfiles).
 
-1. Using ```dotfiles``` command to initialize your plugin executing the following command replacing "<PLUGIN_NAME>" with the desired name:
+If you want to use this plugin you would need to have `dotfiles` installed in your computer.
 
-```shell
-dotfiles create-plugin <PLUGIN_NAME>
-```
+## How to install the plugin
 
-For example:
+If you already have `dotfiles` installed you can add this plugin with the following command:
 
 ```shell
-dotfiles create-plugin my-awesome-plugin
+dotfiles install-plugin https://github.com/autentia/dotfiles-plugin-base.git
 ```
 
+## How to update the plugin
 
-2. Fork this repository to your GitHub profile and commit your changes.
+Plugins are linked to git repository, so you can execute the following command to update it:
 
-## How does it work?
+```shell
+dotfiles update-plugin dotfiles-plugin-base
+```
 
-The file's structure is important to handle the configuration, letting you separate each tool's configuration in different folders, allowing you to isolate each configuration.
-
-The following structure is created by this template:
+## File structure
 
 ```shell
 ├─ bin   # This folder contains custom binaries. 
 ├─ git   # This folder contains your git config.
 ├─ os    # This folder contains your specific config for your Operating System.
+├─ ssh   # This folder contains specific functions related with ssh
 ├─ zsh   # This folder contains your config scripts for your terminal.
 ```
 
-Relax, you have an explanation file for each folder:
+## Configuration included
 
-- [bin](bin/README.md)
-- [git](git/README.md)
-- [os](os/README.md)
-- [zsh](zsh/README.md)
+### Brewfile
+- Apps
+  - Caffeine
+  - AppCleaner
+  - Google Chrome
+  - Spotify
+  - Docker
 
-These folders are what we call **topics**. The structure of each topic is as follows:
+- Commands
+  - git
+  - vim
+  - neovim
+  - fzf
+  - httpie
+  - tree
+  - jq
 
-- **topic/bin/**: Anything inside the bin directory will be added to the $PATH.
-- **topic/install.sh**: Any file named `install.sh` will be executed automatically when plugins are being installed.
-- **topic/\<FILENAME | DIRNAME>.symlink**: Any file that ends with `*.symlink` will be added as a symlink to your $HOME.
+### Modified keys
 
-### Create a new topic
+Caps Lock key (⇪) -> (^) Control
 
-If you wanted to create a new topic you can create a directory `<TOPIC>` in the root of the plugin. Inside you can do some or all of the following:
+### System defaults
 
-1. Create an `install.sh` file that contains the installation process (only required for tools that are not present in Homebrew, if they are it's easier to install by updating the `Brewfile`)
-2. Create an `alias.zsh` file that contains the commands you want
-3. Create a file `functions.zsh` to create utility functions for that topic
-4. Create a directory ending with `.symlink` that will symlink all the files inside that directory to your home directory
+- Finder
+  - Disable press-and-hold for keys in favor of key repeat
+  - Disable window animations and Get Info animations
+  - Use list view in all Finder windows by default
+  - Keep folders on top when sorting by name
+  - Finder: show all filename extensions
+  - Show icons for hard drives, servers, and removable media on the desktop
+  - Avoid creating .DS_Store files on network or USB volumes
+  - Show hidden files
+  - Show the ~/Library folder
+  - Show the /Volumes folder
+- File Vault
+  - Enable File Vault
+- Screenshots
+  - Set up directory to save screenshots inside ~/Downloads/screenshots
+  - Save screenshots in PNG format
+- Dock
+  - Show in Dock just opened applications
+  - Automatically hide and show the dock
+  - Disable changes in the Dock
+  - The size of the largest magnification: 50 (Min 16, Max 128)
+  - Position of the Dock: bottom.
+- Menu Extras
+  - 5 is the number of seconds to delay after login before adding or removing menu extras
+  - Things that shows in the menu extra:
+    - AirPort
+    - Bluetooth
+    - CPU
+    - Clock
+    - Volume
+  - Show battery percentage
+- iCloud
+  - Start iTunes from responding to the keyboard media keys
+  - Save to disk (not to iCloud) by default
+- Terminal
+  - Only use UTF-8 in Terminal.app
+- Spotify
+  - Disabled auto-start
 
-## How to install a plugin
+### Functions
 
-If you have your plugin configured you would need to push it to your favorite repository manager. Then you can add it to ```dotfiles``` in your computer executing:
+- create_ssh_config
+- repositories_status
 
-```shell
-dotfiles install-plugin <GIT_REPOSITORY_URL>
-```
+## License
 
-For example:
+[Apache License](https://github.com/autentia/dotfiles-plugin-base/blob/main/LICENSE.txt)
 
-```shell
-dotfiles install-plugin git@github.com:autentia/my-awesome-plugin-template.git
-```
-
-## How to update
-
-Plugins are linked to git repository, so you can commit your changes to your plugin repository and then execute the following command to update it:
-
-```shell
-dotfiles update-plugin <PLUGIN_NAME>
-```
-
-For example:
-
-```shell
-dotfiles update-plugin my-awesome-plugin
-```
-
-## How to remove
-
-If you have a plugin that you no longer want to use, you can remove it executing:
-
-```shell
-dotfiles uninstall-plugin <PLUGIN_NAME>
-```
-
-For example:
-
-```shell
-dotfiles uninstall-plugin my-awesome-plugin
-```

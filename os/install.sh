@@ -96,7 +96,7 @@ set_macos_defaults() {
     # orientation of the Dock. Values bottom, left and right
     defaults write com.apple.dock orientation -string bottom
 
-    # Apply all finder settings
+    # Apply all Dock settings
     killall Dock
 
     ###############################################################################
